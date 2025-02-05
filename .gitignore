@@ -46,3 +46,6 @@ out/
 # Temporary files
 tmp/
 temp/
+
+bundle.js
+umpsa-exam-enhancer.zip

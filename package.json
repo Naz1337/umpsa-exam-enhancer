@@ -2,6 +2,7 @@
   "name": "umpsa-exam-enhancer",
   "version": "1.0.0",
   "main": "svelte_land/main.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

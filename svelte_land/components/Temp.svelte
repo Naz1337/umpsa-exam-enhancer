@@ -1,5 +1,7 @@
 <script>
     let message = "Hello, Svelte!";
+
+    alert(message);
 </script>
 
 <style>
