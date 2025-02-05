@@ -15,5 +15,11 @@
     ],
     "icons": {
       "128": "icons/icon-128.png"
-    }
-  }
+    },
+    "web_accessible_resources": [
+      {
+        "resources": ["bundle.js"],
+        "matches": ["https://apps-oss-ump-edu-my.libraryumpsa.idm.oclc.org/exam/searchProcess.php"]
+      }
+    ]
+}
