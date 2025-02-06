@@ -9,7 +9,6 @@
 <style>
 div {
     color: hsl(153, 47%, 49%);
-    flex-grow: 1;
 }
 
 span {
