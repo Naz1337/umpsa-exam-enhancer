@@ -1,5 +1,7 @@
 import './styles.css'
 import { mount } from 'svelte';
+import util from './util';
+
 import Temp from './components/Temp.svelte';
 
 
@@ -13,6 +15,30 @@ if (exam_paper_table === null) {
 const table_body = exam_paper_table.querySelector('tbody');
 const total_row = table_body.rows.length - 1;  // because the header for the table is not
                                                // in thead but in tbody
+
+const papers = [];
+for (let i = 1; i < table_body.rows.length; i++) {
+    const row = table_body.rows[i];
+
+    const paper = {
+        no: row.cells[0].textContent,
+        exam_paper: row.cells[1].textContent,
+        semester: row.cells[2].textContent,
+        faculty: row.cells[3].textContent,
+        pdf_link: row.cells[4].querySelector('a').href,
+    };
+
+    // convert semester text to number
+    paper.semester_numbered = util.parseStringToNumber(paper.semester);
+
+    papers.push(paper);
+}
+
+papers.sort((a, b) => {  // this is descending order right?
+    return b.semester_numbered - a.semester_numbered;
+})
+
+console.log(papers);  // we log it for now, this is tough work alright?
 
 const main_container = document.createElement('div');
 main_container.id = 'main_container';
