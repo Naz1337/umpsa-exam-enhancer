@@ -13,6 +13,7 @@
         display: flex;
 
         flex-direction: column;
+        align-items: start;
     }
 
     .filename {
@@ -23,13 +24,16 @@
 
     .semester {
         color: #670e24;
-
+        font-weight: 600;
         margin-bottom: 1rem;
     }
 
     .faculty {
-        color: #f5a3b9;
-        font-weight: 700;
+        color: #a72545;
+        font-weight: 600;
+
+        font-size: 0.75rem;
+        letter-spacing: 0.025rem;
     }
 </style>
 

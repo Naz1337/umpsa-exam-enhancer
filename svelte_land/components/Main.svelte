@@ -4,32 +4,40 @@
 </script>
 
 <style>
-    :global(body) {
-        font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    }
-
     * :global {
         *,
         *::before,
         *::after {
+            line-height: 1.5;
             box-sizing: border-box;
         }
 
         * {
+            font-family: system-ui, "Segoe UI", Roboto, 
+                Helvetica, Arial, sans-serif, "Apple Color Emoji", 
+                "Segoe UI Emoji", "Segoe UI Symbol";
             margin: 0;
         }
     }
 
     div {
-        flex: 0 1 700px;
+        flex: 1 1 auto;
         
         display: flex;
         flex-direction: column;
 
         gap: 1.5rem;
 
+        max-width: 900px;
+        min-width: 380px;
+
     }
 </style>
+
+<svelte:head>
+    <!-- Does this even work? -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</svelte:head>
 
 <div>
     {#each papers as paper}
