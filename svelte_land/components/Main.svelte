@@ -8,11 +8,11 @@
         *,
         *::before,
         *::after {
-            line-height: 1.5;
             box-sizing: border-box;
         }
 
         * {
+            line-height: 1.5;
             font-family: system-ui, "Segoe UI", Roboto, 
                 Helvetica, Arial, sans-serif, "Apple Color Emoji", 
                 "Segoe UI Emoji", "Segoe UI Symbol";

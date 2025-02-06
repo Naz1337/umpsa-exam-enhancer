@@ -1,6 +1,6 @@
 {
   "name": "umpsa-exam-enhancer",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "main": "svelte_land/main.js",
   "type": "module",
   "scripts": {
