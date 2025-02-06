@@ -2,7 +2,7 @@ import './styles.css'
 import { mount } from 'svelte';
 import util from './util';
 
-import Temp from './components/Temp.svelte';
+import Main from './components/Main.svelte';
 
 
 const exam_paper_table_selector = 'body > table:nth-child(5)';
@@ -51,9 +51,9 @@ document.body.insertBefore(main_container, exam_paper_table);
 
 exam_paper_table.remove();
 
-mount(Temp, {
+mount(Main, {
     target: main_container,
     props: {
-        total_row: papers.length,
+        papers,
     }
 });
