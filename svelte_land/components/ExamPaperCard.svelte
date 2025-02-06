@@ -14,6 +14,8 @@
 
         flex-direction: column;
         align-items: start;
+
+        box-shadow: 0px 5px 10px lightgray;
     }
 
     .filename {
