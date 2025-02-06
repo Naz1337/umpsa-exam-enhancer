@@ -1,4 +1,6 @@
 // when you let deepseek r1 cook 🔥, it thinks for 224 second for this, here hoping that this works 👏
+// deepseek contributed with parseStringToNumber and romanToInt functions
+// the rest is from everywhere else
 function parseStringToNumber(input) {
     // Split into semester and session parts
     let [semesterPart, sessionPart] = input.split(/ SESSION /i);
@@ -70,11 +72,35 @@ function romanToInt(roman) {
     return total;
 }
 
+function removeDuplicates(arr, key1, key2) {
+    const seen = new Set();
+    return arr.filter(obj => {
+        const key = `${obj[key1]}|${obj[key2]}`; // Unique key
+        if (seen.has(key)) {
+            return false; // Duplicate found, skip it
+        }
+        seen.add(key);
+        return true; // First occurrence, keep it
+    });
+}
+
 export default {
     parseStringToNumber,
     romanToInt,
+    removeDuplicates,
 }
 
 // Example usage
 // const input = "SEMESTER II SESSION 2023/2024";
 // console.log(parseStringToNumber(input)); // Output: 2023242
+
+// Example usage:
+// const data = [
+//     { id: 1, name: "Alice" },
+//     { id: 2, name: "Bob" },
+//     { id: 1, name: "Alice" }, // Duplicate
+//     { id: 3, name: "Charlie" }
+// ];
+
+// const uniqueData = removeDuplicates(data, "id", "name");
+// console.log(uniqueData);

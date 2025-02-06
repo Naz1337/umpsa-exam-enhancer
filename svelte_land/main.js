@@ -13,10 +13,10 @@ if (exam_paper_table === null) {
 };
 
 const table_body = exam_paper_table.querySelector('tbody');
-const total_row = table_body.rows.length - 1;  // because the header for the table is not
-                                               // in thead but in tbody
+// const total_row = table_body.rows.length - 1;  // because the header for the table is not
+                                                  // in thead but in tbody
 
-const papers = [];
+const raw_papers = [];
 for (let i = 1; i < table_body.rows.length; i++) {
     const row = table_body.rows[i];
 
@@ -31,12 +31,16 @@ for (let i = 1; i < table_body.rows.length; i++) {
     // convert semester text to number
     paper.semester_numbered = util.parseStringToNumber(paper.semester);
 
-    papers.push(paper);
+    raw_papers.push(paper);
 }
 
-papers.sort((a, b) => {  // this is descending order right?
+raw_papers.sort((a, b) => {  // this is descending order right?
     return b.semester_numbered - a.semester_numbered;
 })
+
+// for in subject code "BCI2313", there is multiple entry for the same semester
+// with the exact same paper name. Therefore, need to remove dupes.
+const papers = util.removeDuplicates(raw_papers, 'exam_paper', 'semester_numbered');
 
 console.log(papers);  // we log it for now, this is tough work alright?
 
@@ -50,6 +54,6 @@ exam_paper_table.remove();
 mount(Temp, {
     target: main_container,
     props: {
-        total_row,
+        total_row: papers.length,
     }
 });
