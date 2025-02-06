@@ -7,8 +7,9 @@
 </script>
 
 <style>
-h1 {
+div {
     color: hsl(153, 47%, 49%);
+    flex-grow: 1;
 }
 
 span {
@@ -16,6 +17,4 @@ span {
 }
 </style>
 
-<main>
-    <h1>{message} There are <span>{ total_row }</span> papers to look at...</h1>
-</main>
+<div>{message} There are <span>{ total_row }</span> papers to look at...</div>
