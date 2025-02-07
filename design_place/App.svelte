@@ -11,7 +11,21 @@
     }
 </script>
 
+<main>
+    <h1>Design Place</h1>
+
+    <div>
+        <ExamPaperCard {paper}/>
+    </div>
+</main>
+
 <style>
+    h1 {
+        text-align: center;
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+    }
+
     main {
         width: 100%;
         display: flex;
@@ -32,10 +46,3 @@
     }
 </style>
 
-<main>
-    <h1>Design Place</h1>
-
-    <div>
-        <ExamPaperCard {paper}/>
-    </div>
-</main>
