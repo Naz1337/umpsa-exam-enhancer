@@ -1,37 +1,58 @@
 <script>
     let { paper } = $props();
     let display_pdf = $state(false);
-    // paper = JSON.stringify(paper, null, 2);
+    let iframe_opened = $state(false);
+    
+    let iframe = $state(null);
+
+    function handle_click(event) {
+        const to_display = !display_pdf;
+
+        if (!to_display) {  // If we are closing the pdf
+            if (iframe) {
+                iframe_opened = false;
+
+                iframe.addEventListener('transitionend', () => {
+                    display_pdf = to_display;
+                }, { once: true });
+            }
+        }
+        else {
+            display_pdf = to_display;
+
+            setTimeout(() => {
+                iframe_opened = true
+            }, 0);
+        }
+    }
 </script>
 
-<button class="card" onclick={() => (display_pdf = !display_pdf)}>
+<button class="card" onclick={handle_click}>
     <div class="filename">{paper.exam_paper}</div>
     <div class="semester">{paper.semester}</div>
     <div class="faculty">{paper.faculty}</div>
     {#if display_pdf}
-        <iframe src={paper.pdf_link} title="{paper.exam_paper}"></iframe>
+        <iframe src={paper.pdf_link} title="{paper.exam_paper}" 
+            bind:this={iframe} class={iframe_opened ? 'iframe-opened' : ''}></iframe>
     {/if}
 </button>
 
 <style>
     iframe {
         width: 100%;
-        height: 850px;
+        height: 0px;
+        transition: height 0.3s ease-out, margin-top 0.3s ease-out;
+        margin-top: 0px;
+        
+        border-color: #fdc3d2;
+        border-width: 1px;
 
-        margin-top: 1rem;
+        box-sizing: border-box;
     }
 
-    .card {
-        width: 100%;
-        padding: 1rem;
-        border: 1px solid #ccc;
-        border-radius: 0.5rem;
-        display: flex;
-
-        flex-direction: column;
-        align-items: start;
-
-        box-shadow: 0px 5px 10px lightgray;
+    .iframe-opened {
+        height: 850px;
+        margin-top: 1rem;
     }
 
     .filename {
@@ -62,5 +83,21 @@
         cursor: pointer; /* Keep the pointer cursor for usability */
         box-sizing: border-box;
         display: block;
+    }
+
+    .card {
+        width: 100%;
+        padding: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 0.5rem;
+        display: flex;
+
+        flex-direction: column;
+
+        box-shadow: 0px 5px 10px lightgray;
+    }
+
+    .card:hover {
+        box-shadow: 0px 7px 15px lightgray;
     }
 </style>
