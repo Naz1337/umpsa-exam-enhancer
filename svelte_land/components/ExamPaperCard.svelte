@@ -2,11 +2,31 @@
     let { paper } = $props();
     let display_pdf = $state(false);
     let iframe_opened = $state(false);
+    let is_transitioning = false;
+    let file_label = $state(null);
+
+    let count = 0;
+    // sometimes, the is_transiitoning flag is not reset, so we need to reset it manually
+    // TODO: Find out why this is happening
     
     let iframe = $state(null);
 
     function handle_click(event) {
         const to_display = !display_pdf;
+
+        if (is_transitioning) {
+            console.log('Clicked while transitioning!');
+            count ++
+
+            if (count > 2) {
+                console.log('Resetting count');
+                count = 0;
+                is_transitioning = false;
+            }
+            return;
+        }
+
+        is_transitioning = true;
 
         if (!to_display) {  // If we are closing the pdf
             if (iframe) {
@@ -14,6 +34,7 @@
 
                 iframe.addEventListener('transitionend', () => {
                     display_pdf = to_display;
+                    is_transitioning = false;
                 }, { once: true });
             }
         }
@@ -22,13 +43,24 @@
 
             setTimeout(() => {
                 iframe_opened = true
+
+                if (typeof iframe !== 'undefined' && iframe !== null) {
+                    iframe.addEventListener('transitionend', () => {
+                        is_transitioning = false;
+                        file_label.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, { once: true });
+                }
+                else {
+                    is_transitioning = false;
+                }
+
             }, 0);
         }
     }
 </script>
 
 <button class="card" onclick={handle_click}>
-    <div class="filename">{paper.exam_paper}</div>
+    <div class="filename" bind:this={file_label}>{paper.exam_paper}</div>
     <div class="semester">{paper.semester}</div>
     <div class="faculty">{paper.faculty}</div>
     {#if display_pdf}
@@ -51,7 +83,7 @@
     }
 
     .iframe-opened {
-        height: 850px;
+        height: 95dvh;
         margin-top: 1rem;
     }
 
