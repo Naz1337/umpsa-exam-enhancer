@@ -3,19 +3,18 @@
 
     let { paper } = $props();
     let display_pdf = $state(false);
-    // let iframe_opened = $state(false);
-    // let is_transitioning = false;
-    let file_label = $state(null);
+    let file_label = $state();
 
-    let count = 0;
-    // sometimes, the is_transiitoning flag is not reset, so we need to reset it manually
-    // TODO: Find out why this is happening
-    
-    // let iframe = $state(null);
-
-    function handle_click(event) {
+    function handle_click() {
         display_pdf = !display_pdf;
     }
+
+    function onintroend() {
+        if (typeof file_label === 'undefined') return;
+
+        file_label.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
 </script>
 
 <button class="card" onclick={handle_click}>
@@ -23,7 +22,8 @@
     <div class="semester">{paper.semester}</div>
     <div class="faculty">{paper.faculty}</div>
     {#if display_pdf}
-        <iframe src={paper.pdf_link} title="{paper.exam_paper}" transition:slide></iframe>
+        <iframe src={paper.pdf_link} title="{paper.exam_paper}" 
+         transition:slide {onintroend}></iframe>
     {/if}
 </button>
 
