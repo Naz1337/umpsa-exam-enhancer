@@ -19,40 +19,8 @@ To install and use the UMPSA Exam Enhancer, follow these steps:
    - For **Google Chrome**: Install [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo).
    - For **Mozilla Firefox**: Install [Greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/) or [Tampermonkey](https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/).
    - For **Microsoft Edge**: Install [Tampermonkey](https://microsoftedge.microsoft.com/addons/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo).
-
-2. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/Naz1337/umpsa-exam-enhancer.git
-   cd umpsa-exam-enhancer
-   ```
-
-3. **(Optional) Set Up Environment Variables**:
-   - Copy the example environment file:
-     ```bash
-     cp .env.example .env
-     ```
-   - Open the `.env` file and set the `COPY_POSTBUILD` variable to `true` if you want the script to be automatically copied to your clipboard after building.
-
-4. **Install Dependencies**:
-   - Run the following command to install the necessary dependencies:
-     ```bash
-     npm install
-     ```
-
-5. **Build the Userscript**:
-   - Build the userscript by running:
-     ```bash
-     npm run build
-     ```
-
-6. **Get the Userscript**:
-   - If you set the `COPY_POSTBUILD` variable to `true` in the `.env` file, the script will be automatically copied to your clipboard after the build process.
-   - If not, you can find the generated userscript in the `dist` folder.
-
-7. **Install the Userscript**:
-   - Open your userscript manager (e.g., Tampermonkey).
-   - Create a new script and paste the contents of the generated userscript into the editor.
-   - Save the script.
+   
+2. Click [here](https://github.com/Naz1337/umpsa-exam-enhancer/raw/refs/heads/main/dist/userscript.js)
 
 ## Usage
 
