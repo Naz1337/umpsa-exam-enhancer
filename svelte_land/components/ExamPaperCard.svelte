@@ -1,61 +1,20 @@
 <script>
+    import { slide } from 'svelte/transition';
+
     let { paper } = $props();
     let display_pdf = $state(false);
-    let iframe_opened = $state(false);
-    let is_transitioning = false;
+    // let iframe_opened = $state(false);
+    // let is_transitioning = false;
     let file_label = $state(null);
 
     let count = 0;
     // sometimes, the is_transiitoning flag is not reset, so we need to reset it manually
     // TODO: Find out why this is happening
     
-    let iframe = $state(null);
+    // let iframe = $state(null);
 
     function handle_click(event) {
-        const to_display = !display_pdf;
-
-        if (is_transitioning) {
-            console.log('Clicked while transitioning!');
-            count ++
-
-            if (count > 2) {
-                console.log('Resetting count');
-                count = 0;
-                is_transitioning = false;
-            }
-            return;
-        }
-
-        is_transitioning = true;
-
-        if (!to_display) {  // If we are closing the pdf
-            if (iframe) {
-                iframe_opened = false;
-
-                iframe.addEventListener('transitionend', () => {
-                    display_pdf = to_display;
-                    is_transitioning = false;
-                }, { once: true });
-            }
-        }
-        else {
-            display_pdf = to_display;
-
-            setTimeout(() => {
-                iframe_opened = true
-
-                if (typeof iframe !== 'undefined' && iframe !== null) {
-                    iframe.addEventListener('transitionend', () => {
-                        is_transitioning = false;
-                        file_label.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }, { once: true });
-                }
-                else {
-                    is_transitioning = false;
-                }
-
-            }, 0);
-        }
+        display_pdf = !display_pdf;
     }
 </script>
 
@@ -64,15 +23,14 @@
     <div class="semester">{paper.semester}</div>
     <div class="faculty">{paper.faculty}</div>
     {#if display_pdf}
-        <iframe src={paper.pdf_link} title="{paper.exam_paper}" 
-            bind:this={iframe} class={iframe_opened ? 'iframe-opened' : ''}></iframe>
+        <iframe src={paper.pdf_link} title="{paper.exam_paper}" transition:slide></iframe>
     {/if}
 </button>
 
 <style>
     iframe {
         width: 100%;
-        height: 0px;
+        height: 90dvh;
         transition: height 0.3s ease-out, margin-top 0.3s ease-out;
         margin-top: 0px;
         
@@ -80,11 +38,6 @@
         border-width: 1px;
 
         box-sizing: border-box;
-    }
-
-    .iframe-opened {
-        height: 95dvh;
-        margin-top: 1rem;
     }
 
     .filename {
