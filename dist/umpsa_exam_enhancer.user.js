@@ -1,14 +1,3 @@
-// ==UserScript==
-// @name         UMPSA Exam Enhancer
-// @namespace    https://github.com/Naz1337/umpsa-exam-enhancer
-// @version      0.1.0
-// @description  Improves the interface and functionality of the UMPSA exam paper website, making it easier for students to browse, search, and access past exam papers.
-// @author       Naz
-// @match        https://apps-oss-ump-edu-my.libraryumpsa.idm.oclc.org/exam/searchProcess.php
-// @run-at       document-end
-// @sandbox      DOM
-// @grant        none
-// ==/UserScript==  
 (function() {
   "use strict";
   var __vite_style__ = document.createElement("style");

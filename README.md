@@ -20,7 +20,7 @@ To install and use the UMPSA Exam Enhancer, follow these steps:
    - For **Mozilla Firefox**: Install [Greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/) or [Tampermonkey](https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/).
    - For **Microsoft Edge**: Install [Tampermonkey](https://microsoftedge.microsoft.com/addons/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo).
    
-2. Click [here](https://github.com/Naz1337/umpsa-exam-enhancer/raw/refs/heads/main/dist/userscript.js)
+2. Click [here](https://github.com/Naz1337/umpsa-exam-enhancer/raw/refs/heads/main/dist/umpsa_exam_enhancer.user.js)
 
 ## Usage
 

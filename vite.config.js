@@ -8,7 +8,7 @@ export default defineConfig({
     rollupOptions: {
       input: './svelte_land/main.js', // Entry point for your app
       output: {
-        entryFileNames: 'userscript.js', // Output file name
+        entryFileNames: 'umpsa_exam_enhancer.user.js', // Output file name
         format: 'iife', // Immediately Invoked Function Expression (IIFE) format
         name: 'ExamEnhancer', // Global variable name for the bundle
       },
