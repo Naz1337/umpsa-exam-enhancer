@@ -11,7 +11,7 @@ const __dirname = path.dirname(__filename);
 
 // Paths
 const distDir = path.resolve(__dirname, 'dist'); // Vite output directory
-const userscriptPath = path.join(distDir, 'userscript.js'); // Generated userscript file
+const userscriptPath = path.join(distDir, 'umpsa_exam_enhancer.user.js'); // Generated userscript file
 const headerPath = path.join(__dirname, 'tampermonkey-header.txt'); // Tampermonkey header file
 
 try {
